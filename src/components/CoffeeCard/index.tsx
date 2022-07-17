@@ -1,7 +1,7 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useState } from "react";
 import { useTheme } from "styled-components";
-import coffeeImage from "../../assets/expresso-tradicional.png";
+import { Coffee } from "../../pages/Home";
 import {
   AddToCartButton,
   Amount,
@@ -17,9 +17,11 @@ import {
   Title,
 } from "./styles";
 
-interface CoffeeCardProps {}
+interface CoffeeCardProps {
+  coffee: Coffee;
+}
 
-export const CoffeeCard: React.FC<CoffeeCardProps> = () => {
+export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
   const theme = useTheme();
   const [amount, setAmount] = useState(1);
 
@@ -45,22 +47,22 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = () => {
 
   return (
     <CoffeeCardContainer>
-      <Image src={coffeeImage} alt="Expresso Tradicional" />
+      <Image src={coffee.image} alt={coffee.title} />
 
       <Tags>
-        <Tag>Tradicional</Tag>
+        {coffee.tags.map(tag => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
       </Tags>
 
-      <Title>Expresso Tradicional</Title>
+      <Title>{coffee.title}</Title>
 
-      <Description>
-        O tradicional café feito com água quente e grãos moídos
-      </Description>
+      <Description>{coffee.description}</Description>
 
       <Footer>
         <Price>
           <small>R$</small>
-          <span>9,90</span>
+          <span>{coffee.price}</span>
         </Price>
 
         <Amount>
