@@ -8,21 +8,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.base.text};
+    background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.base.text};
     line-height: 1.3;
   }
 
   h1 {
-    color: ${({ theme }) => theme.base.title};
+    color: ${({ theme }) => theme.colors.base.title};
   }
 
   h2, h3, h4, h5, h6 {
-    color: ${({ theme }) => theme.base.subtitle};
+    color: ${({ theme }) => theme.colors.base.subtitle};
   }
 
   body, input, select, textarea, button {
-    font-family: "Roboto", sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     font-weight: 400;
     font-size: 1rem;
   }

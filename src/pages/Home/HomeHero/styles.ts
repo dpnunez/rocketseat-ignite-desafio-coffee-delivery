@@ -4,8 +4,6 @@ export const HeroContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1120px;
-  margin-inline: auto;
   gap: 3.5rem;
   height: 544px;
 `;
@@ -17,16 +15,16 @@ export const HeroSection = styled.div`
 `;
 
 export const HeroTitle = styled.h1`
-  font-family: "Baloo 2", sans-serif;
+  font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 3rem;
-  color: ${({ theme }) => theme.base.title};
+  color: ${({ theme }) => theme.colors.base.title};
   font-weight: 800;
 `;
 
 export const HeroSubtitle = styled.p`
   margin-top: 1rem;
   font-size: 1.25rem;
-  color: ${({ theme }) => theme.base.subtitle};
+  color: ${({ theme }) => theme.colors.base.subtitle};
 `;
 
 export const HeroItems = styled.div`

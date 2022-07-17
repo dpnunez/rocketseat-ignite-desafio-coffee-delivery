@@ -21,12 +21,20 @@ export const Header: React.FC = () => {
 
         <div>
           <Location>
-            <MapPin size={22} color={theme.purple.DEFAULT} weight="fill" />
+            <MapPin
+              size={22}
+              color={theme.colors.purple.DEFAULT}
+              weight="fill"
+            />
             Porto Alegre, RS
           </Location>
 
           <CheckoutLink to="/checkout" data-cart-items={3}>
-            <ShoppingCart size={22} color={theme.yellow.dark} weight="fill" />
+            <ShoppingCart
+              size={22}
+              color={theme.colors.yellow.dark}
+              weight="fill"
+            />
           </CheckoutLink>
         </div>
       </InsideHeaderContainer>

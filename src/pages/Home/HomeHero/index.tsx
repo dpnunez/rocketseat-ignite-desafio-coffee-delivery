@@ -29,29 +29,33 @@ export const HomeHero: React.FC = () => {
 
         <HeroItems>
           <HeroItem>
-            <HeroItemIconContainer color={theme.yellow.dark}>
-              <ShoppingCart size={16} color={theme.white} weight="fill" />
+            <HeroItemIconContainer color={theme.colors.yellow.dark}>
+              <ShoppingCart
+                size={16}
+                color={theme.colors.white}
+                weight="fill"
+              />
             </HeroItemIconContainer>
             Compra simples e segura
           </HeroItem>
 
           <HeroItem>
-            <HeroItemIconContainer color={theme.base.text}>
-              <Package size={16} color={theme.white} weight="fill" />
+            <HeroItemIconContainer color={theme.colors.base.text}>
+              <Package size={16} color={theme.colors.white} weight="fill" />
             </HeroItemIconContainer>
             Embalagem mantém o café intacto
           </HeroItem>
 
           <HeroItem>
-            <HeroItemIconContainer color={theme.yellow.DEFAULT}>
-              <Timer size={16} color={theme.white} weight="fill" />
+            <HeroItemIconContainer color={theme.colors.yellow.DEFAULT}>
+              <Timer size={16} color={theme.colors.white} weight="fill" />
             </HeroItemIconContainer>
             Entrega rápida e rastreada
           </HeroItem>
 
           <HeroItem>
-            <HeroItemIconContainer color={theme.purple.DEFAULT}>
-              <Coffee size={16} color={theme.white} weight="fill" />
+            <HeroItemIconContainer color={theme.colors.purple.DEFAULT}>
+              <Coffee size={16} color={theme.colors.white} weight="fill" />
             </HeroItemIconContainer>
             O café chega fresquinho até você
           </HeroItem>
