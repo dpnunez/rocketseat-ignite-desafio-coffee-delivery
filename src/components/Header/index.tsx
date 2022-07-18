@@ -30,11 +30,7 @@ export const Header: React.FC = () => {
           </Location>
 
           <CheckoutLink to="/checkout" data-cart-items={3}>
-            <ShoppingCart
-              size={22}
-              color={theme.colors.yellow.dark}
-              weight="fill"
-            />
+            <ShoppingCart size={22} weight="fill" />
           </CheckoutLink>
         </div>
       </InsideHeaderContainer>

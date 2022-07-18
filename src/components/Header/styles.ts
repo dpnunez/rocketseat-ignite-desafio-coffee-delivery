@@ -41,8 +41,17 @@ export const CheckoutLink = styled(Link)<CheckoutLinkProps>`
   justify-content: center;
   padding: 0.5rem;
   border-radius: 6px;
+  color: ${({ theme }) => theme.colors.yellow.dark};
   background-color: ${({ theme }) => theme.colors.yellow.light};
   position: relative;
+
+  transition: 0.2s linear;
+  transition-property: color, background-color;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.yellow.dark};
+  }
 
   ${props => {
     if (typeof props["data-cart-items"] !== "undefined") {
@@ -57,8 +66,8 @@ export const CheckoutLink = styled(Link)<CheckoutLinkProps>`
           width: 1.25rem;
           border-radius: 50%;
 
-          background-color: ${({ theme }) => theme.colors.yellow.dark};
           color: ${({ theme }) => theme.colors.white};
+          background-color: ${({ theme }) => theme.colors.yellow.dark};
           font-weight: 700;
           font-size: 0.75rem;
           line-height: 1;

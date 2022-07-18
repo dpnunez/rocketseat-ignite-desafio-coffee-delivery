@@ -80,40 +80,6 @@ export const Price = styled.span`
   }
 `;
 
-export const Amount = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.base.button};
-  border-radius: 6px;
-`;
-
-export const AmountButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: ${({ theme }) => theme.colors.purple.DEFAULT};
-
-  transition: color 0.2s linear;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:enabled:hover {
-    color: ${({ theme }) => theme.colors.purple.dark};
-  }
-`;
-
-export const AmountInput = styled.input`
-  background: none;
-  border: 0;
-  width: 2ch;
-  text-align: center;
-`;
-
 export const AddToCartButton = styled.button`
   aspect-ratio: 1 / 1;
   width: 2.375rem;

@@ -31,8 +31,7 @@ export const HeroItems = styled.div`
   margin-top: 4.125rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: 1.25rem;
-  column-gap: 2.5rem;
+  gap: 1.25rem 2.5rem;
 `;
 
 export const HeroItem = styled.div`

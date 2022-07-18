@@ -22,6 +22,5 @@ export const CoffeeCards = styled.div`
   margin-top: 3.375rem;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  row-gap: 2.5rem;
-  column-gap: 2rem;
+  gap: 2.5rem 2rem;
 `;
