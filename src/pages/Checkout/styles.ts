@@ -120,6 +120,12 @@ export const CartItems = styled.div`
   gap: 1.5rem;
 `;
 
+export const CartItemSeparator = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.base.button};
+`;
+
 export const Summary = styled.div`
   display: flex;
   flex-direction: column;

@@ -20,6 +20,7 @@ import {
   BackLink,
   Cart,
   CartItems,
+  CartItemSeparator,
   CartSide,
   CheckoutContainer,
   Form,
@@ -220,11 +221,10 @@ export const Checkout: React.FC = () => {
               <Fragment>
                 <CartItems>
                   {items.map(item => (
-                    <CartItem
-                      key={item.coffee.id}
-                      quantity={item.quantity}
-                      coffee={item.coffee}
-                    />
+                    <Fragment key={item.coffee.id}>
+                      <CartItem quantity={item.quantity} coffee={item.coffee} />
+                      <CartItemSeparator />
+                    </Fragment>
                   ))}
                 </CartItems>
 
