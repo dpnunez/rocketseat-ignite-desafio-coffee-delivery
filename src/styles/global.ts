@@ -11,6 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.base.text};
     line-height: 1.3;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {

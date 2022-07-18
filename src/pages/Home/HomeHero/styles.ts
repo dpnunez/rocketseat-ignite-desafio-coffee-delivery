@@ -58,7 +58,6 @@ export const HeroItemIconContainer = styled.div<HeroItemIconContainerProps>`
 `;
 
 export const HeroImage = styled.img`
-  width: 100%;
-  max-width: 476px;
+  width: min(100%, 476px);
   object-fit: cover;
 `;
