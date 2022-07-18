@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { IconButton } from "../../components/IconButton";
 
@@ -151,4 +152,21 @@ export const SummaryLine = styled.div<SummaryLineProps>`
       }
     `;
   }}
+`;
+
+export const NoItemsInCart = styled.p`
+  text-align: center;
+  font-weight: 700;
+`;
+
+export const BackLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.purple.DEFAULT};
+
+  transition: color 0.2s linear;
+
+  &:hover {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.purple.dark};
+  }
 `;

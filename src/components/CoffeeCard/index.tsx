@@ -38,7 +38,13 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
       <Footer>
         <Price>
           <small>R$</small>
-          <span>{coffee.price}</span>
+
+          <span>
+            {coffee.price.toLocaleString(undefined, {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            })}
+          </span>
         </Price>
 
         <CoffeeAmount />

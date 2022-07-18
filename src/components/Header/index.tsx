@@ -2,6 +2,7 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "styled-components";
 import logo from "../../assets/logo.svg";
+import { useCartContext } from "../../contexts/CartContext";
 import {
   CheckoutLink,
   HeaderContainer,
@@ -11,6 +12,7 @@ import {
 
 export const Header: React.FC = () => {
   const theme = useTheme();
+  const { items } = useCartContext();
 
   return (
     <HeaderContainer>
@@ -29,7 +31,10 @@ export const Header: React.FC = () => {
             Porto Alegre, RS
           </Location>
 
-          <CheckoutLink to="/checkout" data-cart-items={3}>
+          <CheckoutLink
+            to="/checkout"
+            data-cart-items={items.length || undefined}
+          >
             <ShoppingCart size={22} weight="fill" />
           </CheckoutLink>
         </div>

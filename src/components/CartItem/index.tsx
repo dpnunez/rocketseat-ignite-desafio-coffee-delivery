@@ -6,12 +6,11 @@ import { IconButton } from "../IconButton";
 import { CartItemContainer, Content, Image, Price } from "./styles";
 
 interface CartItemProps {
-  coffee: Pick<Coffee, "title" | "image"> & {
-    price: number;
-  };
+  quantity: number;
+  coffee: Coffee;
 }
 
-export const CartItem: React.FC<CartItemProps> = ({ coffee }) => (
+export const CartItem: React.FC<CartItemProps> = ({ quantity, coffee }) => (
   <CartItemContainer>
     <Image src={coffee.image} alt={coffee.title} />
 
@@ -19,11 +18,11 @@ export const CartItem: React.FC<CartItemProps> = ({ coffee }) => (
       <strong>{coffee.title}</strong>
 
       <div>
-        <CoffeeAmount />
+        <CoffeeAmount quantity={quantity} />
         <IconButton type="button" icon={Trash} title="REMOVER" size="small" />
       </div>
     </Content>
 
-    <Price>{formatPrice(coffee.price)}</Price>
+    <Price>{formatPrice(coffee.price * quantity)}</Price>
   </CartItemContainer>
 );

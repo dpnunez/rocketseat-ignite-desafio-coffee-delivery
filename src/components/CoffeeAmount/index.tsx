@@ -2,10 +2,12 @@ import { Minus, Plus } from "phosphor-react";
 import { useState } from "react";
 import { AmountButton, AmountInput, CoffeeAmountContainer } from "./styles";
 
-interface CoffeeAmountProps {}
+interface CoffeeAmountProps {
+  quantity?: number;
+}
 
-export const CoffeeAmount: React.FC<CoffeeAmountProps> = () => {
-  const [amount, setAmount] = useState(1);
+export const CoffeeAmount: React.FC<CoffeeAmountProps> = ({ quantity = 1 }) => {
+  const [amount, setAmount] = useState(quantity);
 
   function incrementAmount() {
     setAmount(amount => {

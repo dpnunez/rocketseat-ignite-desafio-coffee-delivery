@@ -5,14 +5,15 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, Fragment, useMemo, useState } from "react";
 import { useTheme } from "styled-components";
-import expressoTradicionalImage from "../../assets/expresso-tradicional.png";
-import latteImage from "../../assets/latte.png";
 import { Button } from "../../components/Button";
 import { CartItem } from "../../components/CartItem";
 import { Input } from "../../components/Input";
+import { useCartContext } from "../../contexts/CartContext";
+import { formatPrice } from "../../utils/formatPrice";
 import {
+  BackLink,
   Cart,
   CartItems,
   CartSide,
@@ -20,6 +21,7 @@ import {
   Form,
   FormInputs,
   FormSide,
+  NoItemsInCart,
   PaymentMethodButton,
   PaymentMethodButtons,
   Section,
@@ -28,7 +30,10 @@ import {
   SummaryLine,
 } from "./styles";
 
+const deliveryFee = 3.5;
+
 export const Checkout: React.FC = () => {
+  const { items } = useCartContext();
   const { colors } = useTheme();
   const [paymentMethod, setPaymentMethod] = useState<
     "credit" | "debit" | "cash"
@@ -37,6 +42,13 @@ export const Checkout: React.FC = () => {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
+
+  const itemsTotal = useMemo((): number => {
+    return items.reduce(
+      (total, item) => total + item.coffee.price * item.quantity,
+      0,
+    );
+  }, [items]);
 
   return (
     <CheckoutContainer>
@@ -129,42 +141,44 @@ export const Checkout: React.FC = () => {
           <h2>Cafés selecionados</h2>
 
           <Cart>
-            <CartItems>
-              <CartItem
-                coffee={{
-                  title: "Expresso Tradicional",
-                  price: 9.9,
-                  image: expressoTradicionalImage,
-                }}
-              />
+            {items.length > 0 ? (
+              <Fragment>
+                <CartItems>
+                  {items.map(item => (
+                    <CartItem
+                      key={item.coffee.id}
+                      quantity={item.quantity}
+                      coffee={item.coffee}
+                    />
+                  ))}
+                </CartItems>
 
-              <CartItem
-                coffee={{
-                  title: "Latte",
-                  price: 19.8,
-                  image: latteImage,
-                }}
-              />
-            </CartItems>
+                <Summary>
+                  <SummaryLine>
+                    <span>Total de itens</span>
+                    <span>{formatPrice(itemsTotal)}</span>
+                  </SummaryLine>
 
-            <Summary>
-              <SummaryLine>
-                <span>Total de itens</span>
-                <span>R$ 29,70</span>
-              </SummaryLine>
+                  <SummaryLine>
+                    <span>Entrega</span>
+                    <span>{formatPrice(deliveryFee)}</span>
+                  </SummaryLine>
 
-              <SummaryLine>
-                <span>Entrega</span>
-                <span>R$ 3,50</span>
-              </SummaryLine>
+                  <SummaryLine highlight>
+                    <span>Total</span>
+                    <span>{formatPrice(itemsTotal + deliveryFee)}</span>
+                  </SummaryLine>
+                </Summary>
 
-              <SummaryLine highlight>
-                <span>Total</span>
-                <span>R$ 33,20</span>
-              </SummaryLine>
-            </Summary>
-
-            <Button type="submit" title="CONFIRMAR PEDIDO" />
+                <Button type="submit" title="CONFIRMAR PEDIDO" />
+              </Fragment>
+            ) : (
+              <NoItemsInCart>
+                Seu carrinho está vazio 😭
+                <br />
+                Clique <BackLink to="/">aqui</BackLink> para voltar à loja
+              </NoItemsInCart>
+            )}
           </Cart>
         </CartSide>
       </Form>
