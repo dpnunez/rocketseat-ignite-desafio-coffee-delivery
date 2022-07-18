@@ -10,6 +10,15 @@ export const GlobalStyle = createGlobalStyle`
   html {
     /* para compensar o sticky header */
     scroll-padding-top: 7.5rem;
+    font-size: 87.5%;
+
+    @media ${({ theme }) => theme.breakpoints.sm} {
+      font-size: 93.75%;
+    }
+
+    @media ${({ theme }) => theme.breakpoints.lg} {
+      font-size: 100%;
+    }
   }
 
   body {

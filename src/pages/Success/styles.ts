@@ -16,25 +16,41 @@ export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 800;
   color: ${({ theme }) => theme.colors.yellow.dark};
+  text-align: center;
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    text-align: left;
+  }
 `;
 
 export const SubTitle = styled.p`
   font-size: 1.25rem;
   color: ${({ theme }) => theme.colors.base.subtitle};
+  text-align: center;
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    text-align: left;
+  }
 `;
 
 export const Content = styled.div`
   margin-top: 2.5rem;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   gap: 2rem;
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    flex-direction: row;
+    align-items: flex-end;
+  }
 `;
 
 export const DeliveryDetails = styled.div`
   width: min(100%, 526px);
   border-radius: 6px 36px;
-  padding: 2.5rem;
+  padding: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -62,6 +78,18 @@ export const DeliveryDetails = styled.div`
     strong {
       font-weight: 700;
     }
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1.5rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 2rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    padding: 2.5rem;
   }
 `;
 

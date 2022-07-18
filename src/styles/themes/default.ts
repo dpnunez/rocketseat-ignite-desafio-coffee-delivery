@@ -27,4 +27,11 @@ export const defaultTheme = {
     primary: "Roboto, sans-serif",
     secondary: "'Baloo 2', sans-serif",
   },
+  breakpoints: {
+    xs: "(min-width: 425px)",
+    sm: "(min-width: 640px)",
+    md: "(min-width: 768px)",
+    lg: "(min-width: 1024px)",
+    xl: "(min-width: 1280px)",
+  },
 };
