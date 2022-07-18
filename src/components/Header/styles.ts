@@ -4,6 +4,8 @@ import styled, { css } from "styled-components";
 export const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 2rem 1rem;
+  position: sticky;
+  top: 0;
 `;
 
 export const InsideHeaderContainer = styled.div`

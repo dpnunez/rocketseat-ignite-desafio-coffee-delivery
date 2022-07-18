@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
     <HeaderContainer>
       <InsideHeaderContainer>
         <Link to="/">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Copo de café e texto 'Coffee Delivery'" />
         </Link>
 
         <div>

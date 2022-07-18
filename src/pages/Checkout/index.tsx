@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Bank,
   CreditCard,
@@ -5,8 +6,11 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { FormEvent, Fragment, useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "styled-components";
+import * as zod from "zod";
 import { Button } from "../../components/Button";
 import { CartItem } from "../../components/CartItem";
 import { Input } from "../../components/Input";
@@ -32,16 +36,33 @@ import {
 
 const deliveryFee = 3.5;
 
-export const Checkout: React.FC = () => {
-  const { items } = useCartContext();
-  const { colors } = useTheme();
-  const [paymentMethod, setPaymentMethod] = useState<
-    "credit" | "debit" | "cash"
-  >();
+const checkoutFormValidationSchema = zod.object({
+  zipcode: zod.string(),
+  street: zod.string(),
+  number: zod.string(),
+  complement: zod.string().optional(),
+  neighbourhood: zod.string(),
+  city: zod.string(),
+  state: zod.string(),
+});
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
+type CheckoutFormValues = zod.infer<typeof checkoutFormValidationSchema>;
+
+type PaymentMethod = "credit" | "debit" | "cash";
+
+export interface SuccessPageLocationState {
+  address: CheckoutFormValues;
+  paymentMethod: PaymentMethod;
+}
+
+export const Checkout: React.FC = () => {
+  const navigate = useNavigate();
+  const { items, clearCart } = useCartContext();
+  const { colors } = useTheme();
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>();
+  const { register, handleSubmit } = useForm<CheckoutFormValues>({
+    resolver: zodResolver(checkoutFormValidationSchema),
+  });
 
   const itemsTotal = useMemo((): number => {
     return items.reduce(
@@ -50,9 +71,27 @@ export const Checkout: React.FC = () => {
     );
   }, [items]);
 
+  function handleCheckout(values: CheckoutFormValues) {
+    if (!items.length) {
+      return alert("É necessário selecionar itens para finalizar pedido");
+    }
+
+    if (!paymentMethod) {
+      return alert("É necessário selecionar um método de pagamento");
+    }
+
+    clearCart();
+    navigate("/success", {
+      state: {
+        address: values,
+        paymentMethod,
+      },
+    });
+  }
+
   return (
     <CheckoutContainer>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit(handleCheckout)}>
         <FormSide>
           <h2>Complete seu pedido</h2>
 
@@ -68,30 +107,66 @@ export const Checkout: React.FC = () => {
 
             <FormInputs>
               <div style={{ gridColumn: "span 3" }}>
-                <Input type="text" placeholder="CEP" required />
+                <Input
+                  type="text"
+                  placeholder="CEP"
+                  required
+                  {...register("zipcode")}
+                />
               </div>
 
               <div style={{ gridColumn: "1 / -1" }}>
-                <Input type="text" placeholder="Rua" required />
+                <Input
+                  type="text"
+                  placeholder="Rua"
+                  required
+                  {...register("street")}
+                />
               </div>
 
               <div style={{ gridColumn: "span 3" }}>
-                <Input type="text" placeholder="Número" required />
+                <Input
+                  type="text"
+                  placeholder="Número"
+                  required
+                  {...register("number")}
+                />
               </div>
 
               <div style={{ gridColumn: "4 / -1" }}>
-                <Input type="text" placeholder="Complemento" />
+                <Input
+                  type="text"
+                  placeholder="Complemento"
+                  {...register("complement")}
+                />
               </div>
 
               <div style={{ gridColumn: "span 3" }}>
-                <Input type="text" placeholder="Bairro" required />
+                <Input
+                  type="text"
+                  placeholder="Bairro"
+                  required
+                  {...register("neighbourhood")}
+                />
               </div>
 
               <div style={{ gridColumn: "span 5" }}>
-                <Input type="text" placeholder="Cidade" required />
+                <Input
+                  type="text"
+                  placeholder="Cidade"
+                  required
+                  {...register("city")}
+                />
               </div>
 
-              <Input type="text" placeholder="UF" required />
+              <div>
+                <Input
+                  type="text"
+                  placeholder="UF"
+                  required
+                  {...register("state")}
+                />
+              </div>
             </FormInputs>
           </Section>
 

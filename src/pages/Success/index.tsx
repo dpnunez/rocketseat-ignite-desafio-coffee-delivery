@@ -1,6 +1,9 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "styled-components";
 import successIllustration from "../../assets/success-illustration.png";
+import { SuccessPageLocationState } from "../Checkout";
 import {
   Content,
   DeliveryDetails,
@@ -14,6 +17,20 @@ import {
 
 export const Success: React.FC = () => {
   const { colors } = useTheme();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, [state]);
+
+  if (!state) {
+    return null;
+  }
+
+  const { address, paymentMethod } = state as SuccessPageLocationState;
 
   return (
     <SuccessContainer>
@@ -31,9 +48,12 @@ export const Success: React.FC = () => {
               </DeliveryDetailsIcon>
 
               <p>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{" "}
+                <strong>
+                  {address.street}, {address.number}
+                </strong>
                 <br />
-                Farrapos - Porto Alegre, RS
+                {address.neighbourhood} - {address.city}, {address.state}
               </p>
             </div>
 
@@ -57,7 +77,11 @@ export const Success: React.FC = () => {
               <p>
                 Pagamento na entrega
                 <br />
-                <strong>Cartão de Crédito</strong>
+                <strong>
+                  {paymentMethod === "credit" && "Cartão de Crédito"}
+                  {paymentMethod === "debit" && "Cartão de Débito"}
+                  {paymentMethod === "cash" && "Dinheiro"}
+                </strong>
               </p>
             </div>
           </DeliveryDetails>

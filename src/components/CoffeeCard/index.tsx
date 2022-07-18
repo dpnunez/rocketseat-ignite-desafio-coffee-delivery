@@ -1,7 +1,9 @@
 import { ShoppingCart } from "phosphor-react";
+import { useRef } from "react";
 import { useTheme } from "styled-components";
+import { useCartContext } from "../../contexts/CartContext";
 import { Coffee } from "../../pages/Home";
-import { CoffeeAmount } from "../CoffeeAmount";
+import { CoffeeQuantity, CoffeeQuantityRef } from "../CoffeeQuantity";
 import {
   AddToCartButton,
   CoffeeCardContainer,
@@ -20,6 +22,12 @@ interface CoffeeCardProps {
 
 export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
   const theme = useTheme();
+  const { addItemToCart } = useCartContext();
+  const coffeeQuantityRef = useRef<CoffeeQuantityRef>(null);
+
+  function handleAddToCart() {
+    addItemToCart(coffeeQuantityRef.current?.quantity ?? 1, coffee.id);
+  }
 
   return (
     <CoffeeCardContainer>
@@ -47,9 +55,9 @@ export const CoffeeCard: React.FC<CoffeeCardProps> = ({ coffee }) => {
           </span>
         </Price>
 
-        <CoffeeAmount />
+        <CoffeeQuantity ref={coffeeQuantityRef} />
 
-        <AddToCartButton type="button">
+        <AddToCartButton type="button" onClick={handleAddToCart}>
           <ShoppingCart
             size={22}
             color={theme.colors.base.card}

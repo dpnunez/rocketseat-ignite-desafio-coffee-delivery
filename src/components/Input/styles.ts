@@ -12,6 +12,7 @@ export const InputField = styled.input`
   width: 100%;
   padding: 0.75rem;
   border-radius: 4px;
+  color: ${({ theme }) => theme.colors.base.text};
 
   &::placeholder {
     font-size: 0.875rem;

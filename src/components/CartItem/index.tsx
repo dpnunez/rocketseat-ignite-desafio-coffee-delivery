@@ -1,7 +1,8 @@
 import { Trash } from "phosphor-react";
+import { useCartContext } from "../../contexts/CartContext";
 import { Coffee } from "../../pages/Home";
 import { formatPrice } from "../../utils/formatPrice";
-import { CoffeeAmount } from "../CoffeeAmount";
+import { CoffeeQuantity } from "../CoffeeQuantity";
 import { IconButton } from "../IconButton";
 import { CartItemContainer, Content, Image, Price } from "./styles";
 
@@ -10,19 +11,46 @@ interface CartItemProps {
   coffee: Coffee;
 }
 
-export const CartItem: React.FC<CartItemProps> = ({ quantity, coffee }) => (
-  <CartItemContainer>
-    <Image src={coffee.image} alt={coffee.title} />
+export const CartItem: React.FC<CartItemProps> = ({ quantity, coffee }) => {
+  const { addItemToCart, removeItemFromCart } = useCartContext();
 
-    <Content>
-      <strong>{coffee.title}</strong>
+  function handleIncrement(quantity: number) {
+    addItemToCart(quantity, coffee.id);
+  }
 
-      <div>
-        <CoffeeAmount quantity={quantity} />
-        <IconButton type="button" icon={Trash} title="REMOVER" size="small" />
-      </div>
-    </Content>
+  function handleDecrement(quantity: number) {
+    addItemToCart(quantity, coffee.id);
+  }
 
-    <Price>{formatPrice(coffee.price * quantity)}</Price>
-  </CartItemContainer>
-);
+  function handleDeleteItem() {
+    removeItemFromCart(coffee.id);
+  }
+
+  return (
+    <CartItemContainer>
+      <Image src={coffee.image} alt={coffee.title} />
+
+      <Content>
+        <strong>{coffee.title}</strong>
+
+        <div>
+          <CoffeeQuantity
+            initialQuantity={quantity}
+            onIncrement={handleIncrement}
+            onDecrement={handleDecrement}
+          />
+
+          <IconButton
+            type="button"
+            icon={Trash}
+            title="REMOVER"
+            size="small"
+            onClick={handleDeleteItem}
+          />
+        </div>
+      </Content>
+
+      <Price>{formatPrice(coffee.price * quantity)}</Price>
+    </CartItemContainer>
+  );
+};

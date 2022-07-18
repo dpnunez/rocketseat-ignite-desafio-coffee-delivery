@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CoffeeAmountContainer = styled.div`
+export const CoffeeQuantityContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -9,7 +9,7 @@ export const CoffeeAmountContainer = styled.div`
   border-radius: 6px;
 `;
 
-export const AmountButton = styled.button`
+export const QuantityButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@ export const AmountButton = styled.button`
   }
 `;
 
-export const AmountInput = styled.input`
+export const QuantityInput = styled.input`
   width: 2ch;
   text-align: center;
   color: ${({ theme }) => theme.colors.base.title};

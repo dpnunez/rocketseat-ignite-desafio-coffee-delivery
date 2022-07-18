@@ -17,6 +17,7 @@ interface CartContextData {
   items: FullCartItem[];
   addItemToCart: (quantity: number, coffeeId: Coffee["id"]) => void;
   removeItemFromCart: (coffeeId: Coffee["id"]) => void;
+  clearCart: () => void;
 }
 
 const CartContext = createContext({} as CartContextData);
@@ -75,6 +76,10 @@ export const CartContextProvider: React.FC<CartContextProviderProps> = ({
     [],
   );
 
+  const clearCart: CartContextData["clearCart"] = useCallback(() => {
+    setItems([]);
+  }, []);
+
   const fullItems = useMemo((): FullCartItem[] => {
     return (
       items
@@ -93,6 +98,7 @@ export const CartContextProvider: React.FC<CartContextProviderProps> = ({
         items: fullItems,
         addItemToCart,
         removeItemFromCart,
+        clearCart,
       }}
     >
       {children}
