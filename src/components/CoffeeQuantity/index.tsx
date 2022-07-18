@@ -25,29 +25,25 @@ export const CoffeeQuantity = forwardRef<
   useImperativeHandle(ref, () => ({ quantity }), [quantity]);
 
   function incrementAmount() {
-    setQuantity(amount => {
-      let newAmount = 1;
+    let newQuantity = 1;
 
-      if (!isNaN(amount)) {
-        newAmount = amount + 1;
-      }
+    if (!isNaN(quantity)) {
+      newQuantity = quantity + 1;
+    }
 
-      onIncrement?.(newAmount);
-      return newAmount;
-    });
+    setQuantity(newQuantity);
+    onIncrement?.(newQuantity);
   }
 
   function decrementAmount() {
-    setQuantity(amount => {
-      let newAmount = 1;
+    let newQuantity = 1;
 
-      if (!isNaN(amount)) {
-        newAmount = amount - 1;
-      }
+    if (!isNaN(quantity)) {
+      newQuantity = quantity - 1;
+    }
 
-      onDecrement?.(newAmount);
-      return newAmount;
-    });
+    setQuantity(newQuantity);
+    onDecrement?.(newQuantity);
   }
 
   return (
