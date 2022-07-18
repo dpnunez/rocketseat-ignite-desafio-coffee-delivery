@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "styled-components";
 import successIllustration from "../../assets/success-illustration.png";
-import { SuccessPageLocationState } from "../Checkout";
+import { CheckoutFormValues, PaymentMethod } from "../Checkout";
 import {
   Content,
   DeliveryDetails,
@@ -14,6 +14,11 @@ import {
   SuccessInsideContainer,
   Title,
 } from "./styles";
+
+interface SuccessPageLocationState {
+  address: CheckoutFormValues;
+  paymentMethod: PaymentMethod;
+}
 
 export const Success: React.FC = () => {
   const { colors } = useTheme();
