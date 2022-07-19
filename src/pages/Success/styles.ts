@@ -104,6 +104,7 @@ export const DeliveryDetailsIcon = styled.div<DeliveryDetailsIconProps>`
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   width: 2rem;
+  flex-shrink: 0;
 
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ color }) => color};

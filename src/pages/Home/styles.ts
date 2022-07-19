@@ -21,6 +21,19 @@ export const HomeTitle = styled.h2`
 export const CoffeeCards = styled.div`
   margin-top: 3.375rem;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2.5rem 2rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem 1.25rem;
+
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.xl} {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 `;
