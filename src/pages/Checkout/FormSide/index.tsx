@@ -10,12 +10,19 @@ import { useTheme } from "styled-components";
 import { CheckoutFormValues, PaymentMethod } from "..";
 import { Input } from "../../../components/Input";
 import {
+  CityInputContainer,
+  ComplementInputContainer,
   FormInputs,
   FormSideContainer,
+  NeighbourhoodInputContainer,
+  NumberInputContainer,
   PaymentMethodButton,
   PaymentMethodButtons,
   Section,
   SectionHeader,
+  StateInputContainer,
+  StreetInputContainer,
+  ZipcodeInputContainer,
 } from "./styles";
 
 interface FormSideProps {
@@ -48,69 +55,43 @@ export const FormSide: React.FC<FormSideProps> = ({
         </SectionHeader>
 
         <FormInputs>
-          <div style={{ gridColumn: "span 3" }}>
-            <Input
-              type="text"
-              placeholder="CEP"
-              required
-              {...register("zipcode")}
-            />
-          </div>
+          <ZipcodeInputContainer>
+            <Input placeholder="CEP" required {...register("zipcode")} />
+          </ZipcodeInputContainer>
 
-          <div style={{ gridColumn: "1 / -1" }}>
-            <Input
-              type="text"
-              placeholder="Rua"
-              required
-              {...register("street")}
-            />
-          </div>
+          <StreetInputContainer>
+            <Input placeholder="Rua" required {...register("street")} />
+          </StreetInputContainer>
 
-          <div style={{ gridColumn: "span 3" }}>
-            <Input
-              type="text"
-              placeholder="Número"
-              required
-              {...register("number")}
-            />
-          </div>
+          <NumberInputContainer>
+            <Input placeholder="Número" required {...register("number")} />
+          </NumberInputContainer>
 
-          <div style={{ gridColumn: "4 / -1" }}>
-            <Input
-              type="text"
-              placeholder="Complemento"
-              {...register("complement")}
-            />
-          </div>
+          <ComplementInputContainer>
+            <Input placeholder="Complemento" {...register("complement")} />
+          </ComplementInputContainer>
 
-          <div style={{ gridColumn: "span 3" }}>
+          <NeighbourhoodInputContainer>
             <Input
-              type="text"
               placeholder="Bairro"
               required
               {...register("neighbourhood")}
             />
-          </div>
+          </NeighbourhoodInputContainer>
 
-          <div style={{ gridColumn: "span 5" }}>
-            <Input
-              type="text"
-              placeholder="Cidade"
-              required
-              {...register("city")}
-            />
-          </div>
+          <CityInputContainer>
+            <Input placeholder="Cidade" required {...register("city")} />
+          </CityInputContainer>
 
-          <div>
+          <StateInputContainer>
             <Input
-              type="text"
               placeholder="UF"
               required
               minLength={2}
               maxLength={2}
               {...register("state")}
             />
-          </div>
+          </StateInputContainer>
         </FormInputs>
       </Section>
 

@@ -10,6 +10,11 @@ export const Form = styled.form`
   max-width: 1120px;
   margin-inline: auto;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    flex-direction: row;
+  }
 `;

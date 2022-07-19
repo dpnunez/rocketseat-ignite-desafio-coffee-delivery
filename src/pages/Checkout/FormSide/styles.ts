@@ -19,10 +19,18 @@ export const FormSideContainer = styled.section`
 export const Section = styled.section`
   border-radius: 6px;
   background-color: ${({ theme }) => theme.colors.base.card};
-  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 1.5rem;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 2rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    padding: 2.5rem;
+  }
 `;
 
 export const SectionHeader = styled.div`
@@ -52,13 +60,100 @@ export const SectionHeader = styled.div`
 export const FormInputs = styled.div`
   display: grid;
   gap: 1rem 0.75rem;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 0.75rem 0.5rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    gap: 1rem 0.75rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    gap: 0.75rem 0.5rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    gap: 1rem 0.75rem;
+  }
+`;
+
+export const ZipcodeInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: span 3;
+  }
+`;
+
+export const StreetInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: 1 / -1;
+  }
+`;
+
+export const NumberInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: span 3;
+  }
+`;
+
+export const ComplementInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: 4 / -1;
+  }
+`;
+
+export const NeighbourhoodInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: span 3;
+  }
+`;
+
+export const CityInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: span 4;
+  }
+
+  @media (min-width: 1120px) {
+    grid-column: span 5;
+  }
+`;
+
+export const StateInputContainer = styled.div`
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-column: span 2;
+  }
+
+  @media (min-width: 1120px) {
+    grid-column: span 1;
+  }
 `;
 
 export const PaymentMethodButtons = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 0.75rem;
+
+  @media ${({ theme }) => theme.breakpoints.xs} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media ${({ theme }) => theme.breakpoints.xl} {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 `;
 
 interface PaymentMethodButtonProps {

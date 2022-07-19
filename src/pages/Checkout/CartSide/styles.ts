@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const CartSideContainer = styled.section`
-  width: 448px;
+  width: 100%;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    width: 368px;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    width: 448px;
+  }
 
   > h2 {
     margin-bottom: 0.9375rem;
@@ -16,10 +24,18 @@ export const CartSideContainer = styled.section`
 export const Cart = styled.div`
   background-color: ${({ theme }) => theme.colors.base.card};
   border-radius: 6px 44px;
-  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding: 1.5rem;
+
+  @media ${({ theme }) => theme.breakpoints.md} {
+    padding: 2rem;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.lg} {
+    padding: 2.5rem;
+  }
 `;
 
 export const CartItems = styled.div`
